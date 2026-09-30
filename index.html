@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="es" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Panel de administración para gestionar AgentHub."
+    />
+    <title>AgentHub | Panel de administración</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { darkMode: "class" };
+    </script>
+  </head>
+  <body class="h-full bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+    <div class="min-h-full md:flex">
+      <aside class="border-b border-slate-200 bg-white md:sticky md:top-0 md:h-screen md:w-60 md:shrink-0 md:overflow-y-auto md:border-b-0 md:border-r dark:border-slate-800 dark:bg-slate-900">
+        <div class="flex items-center gap-3 px-5 py-5">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-600 text-lg font-bold text-white">A</div>
+          <div>
+            <p class="font-semibold tracking-tight">AgentHub</p>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Administración</p>
+          </div>
+        </div>
+        <nav aria-label="Navegación principal" class="flex gap-1 overflow-x-auto px-3 pb-3 md:block md:space-y-1 md:overflow-visible md:px-3">
+          <a href="#dashboard" data-nav-link class="flex shrink-0 items-center gap-3 rounded-lg bg-indigo-50 px-3 py-2.5 text-sm font-medium text-indigo-700 md:w-full dark:bg-indigo-950 dark:text-indigo-300">
+            <span aria-hidden="true">▦</span><span>Dashboard</span>
+          </a>
+          <a href="#usuarios" data-nav-link class="flex shrink-0 items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-100 md:w-full dark:text-slate-300 dark:hover:bg-slate-800">
+            <span aria-hidden="true">♙</span><span>Usuarios</span>
+          </a>
+          <a href="#agentes" data-nav-link class="flex shrink-0 items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-100 md:w-full dark:text-slate-300 dark:hover:bg-slate-800">
+            <span aria-hidden="true">✳</span><span>Agentes</span>
+          </a>
+          <a href="#skills" data-nav-link class="flex shrink-0 items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-100 md:w-full dark:text-slate-300 dark:hover:bg-slate-800">
+            <span aria-hidden="true">◇</span><span>Skills</span>
+          </a>
+          <a href="#contrataciones" data-nav-link class="flex shrink-0 items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-100 md:w-full dark:text-slate-300 dark:hover:bg-slate-800">
+            <span aria-hidden="true">▤</span><span>Contrataciones</span>
+          </a>
+          <a href="#errores" data-nav-link class="flex shrink-0 items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-100 md:w-full dark:text-slate-300 dark:hover:bg-slate-800">
+            <span aria-hidden="true">⚠</span><span>Log de errores</span>
+          </a>
+        </nav>
+        <div class="hidden border-t border-slate-200 px-5 py-4 text-xs text-slate-500 md:block dark:border-slate-800 dark:text-slate-400">
+          AgentHub Console <span class="float-right">v1.0</span>
+        </div>
+      </aside>
+
+      <div class="min-w-0 flex-1">
+        <header class="sticky top-0 z-20 flex items-center justify-between border-b border-slate-200 bg-white/95 px-5 py-3 backdrop-blur sm:px-8 dark:border-slate-800 dark:bg-slate-900/95">
+          <div>
+            <p class="text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400">Workspace</p>
+            <p class="font-semibold">Panel de administración</p>
+          </div>
+          <button id="theme-toggle" type="button" aria-label="Activar modo oscuro" aria-pressed="false" class="flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm font-medium hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800">
+            <span id="theme-icon" aria-hidden="true">☾</span>
+            <span id="theme-label">Modo oscuro</span>
+          </button>
+        </header>
+
+        <main class="mx-auto max-w-7xl space-y-12 px-4 py-8 sm:px-8">
+          <section id="dashboard" aria-labelledby="dashboard-title" class="scroll-mt-24 space-y-6">
+            <div>
+              <p class="text-sm font-medium text-indigo-600 dark:text-indigo-400">Resumen</p>
+              <h1 id="dashboard-title" class="mt-1 text-2xl font-bold tracking-tight sm:text-3xl">Dashboard</h1>
+              <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">Vista general del rendimiento de AgentHub.</p>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                <div class="flex items-center justify-between"><span class="text-sm font-medium text-slate-500 dark:text-slate-400">Ingresos totales</span><span class="rounded-xl bg-emerald-50 p-2 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-400" aria-hidden="true">$</span></div>
+                <p class="mt-4 text-3xl font-bold">$48,290</p><p class="mt-1 text-xs text-emerald-600 dark:text-emerald-400">+12.8% este mes</p>
+              </article>
+              <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                <div class="flex items-center justify-between"><span class="text-sm font-medium text-slate-500 dark:text-slate-400">Pérdidas por descuentos</span><span class="rounded-xl bg-amber-50 p-2 text-amber-600 dark:bg-amber-950 dark:text-amber-400" aria-hidden="true">%</span></div>
+                <p class="mt-4 text-3xl font-bold">$2,460</p><p class="mt-1 text-xs text-slate-500 dark:text-slate-400">5.1% de los ingresos</p>
+              </article>
+              <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                <div class="flex items-center justify-between"><span class="text-sm font-medium text-slate-500 dark:text-slate-400">Agentes activos</span><span class="rounded-xl bg-indigo-50 p-2 text-indigo-600 dark:bg-indigo-950 dark:text-indigo-400" aria-hidden="true">✳</span></div>
+                <p class="mt-4 text-3xl font-bold">32</p><p class="mt-1 text-xs text-indigo-600 dark:text-indigo-400">4 en este workspace</p>
+              </article>
+              <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                <div class="flex items-center justify-between"><span class="text-sm font-medium text-slate-500 dark:text-slate-400">Agentes fallando</span><span class="rounded-xl bg-rose-50 p-2 text-rose-600 dark:bg-rose-950 dark:text-rose-400" aria-hidden="true">!</span></div>
+                <p class="mt-4 text-3xl font-bold">3</p><p class="mt-1 text-xs text-rose-600 dark:text-rose-400">Requieren atención</p>
+              </article>
+            </div>
+            <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6 dark:border-slate-800 dark:bg-slate-900">
+              <div class="flex flex-wrap items-start justify-between gap-3">
+                <div><h2 class="font-semibold">Actividad semanal</h2><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Eventos procesados durante los últimos 7 días</p></div>
+                <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">Últimos 7 días</span>
+              </div>
+              <div class="mt-6 flex h-52 items-end justify-around gap-3 rounded-xl border border-dashed border-slate-300 bg-slate-50 px-4 pb-4 pt-6 dark:border-slate-700 dark:bg-slate-950">
+                <div class="flex h-full w-full flex-col items-center justify-end gap-2"><div class="h-2/5 w-full max-w-12 rounded-t-md bg-indigo-300 dark:bg-indigo-800"></div><span class="text-xs text-slate-500">Lun</span></div>
+                <div class="flex h-full w-full flex-col items-center justify-end gap-2"><div class="h-3/5 w-full max-w-12 rounded-t-md bg-indigo-400 dark:bg-indigo-700"></div><span class="text-xs text-slate-500">Mar</span></div>
+                <div class="flex h-full w-full flex-col items-center justify-end gap-2"><div class="h-1/2 w-full max-w-12 rounded-t-md bg-indigo-300 dark:bg-indigo-800"></div><span class="text-xs text-slate-500">Mié</span></div>
+                <div class="flex h-full w-full flex-col items-center justify-end gap-2"><div class="h-4/5 w-full max-w-12 rounded-t-md bg-indigo-500 dark:bg-indigo-600"></div><span class="text-xs text-slate-500">Jue</span></div>
+                <div class="flex h-full w-full flex-col items-center justify-end gap-2"><div class="h-3/5 w-full max-w-12 rounded-t-md bg-indigo-400 dark:bg-indigo-700"></div><span class="text-xs text-slate-500">Vie</span></div>
+                <div class="flex h-full w-full flex-col items-center justify-end gap-2"><div class="h-2/3 w-full max-w-12 rounded-t-md bg-indigo-400 dark:bg-indigo-700"></div><span class="text-xs text-slate-500">Sáb</span></div>
+                <div class="flex h-full w-full flex-col items-center justify-end gap-2"><div class="h-1/3 w-full max-w-12 rounded-t-md bg-indigo-300 dark:bg-indigo-800"></div><span class="text-xs text-slate-500">Dom</span></div>
+              </div>
+              <p class="mt-3 text-center text-xs text-slate-500 dark:text-slate-400">Área reservada para la integración del gráfico de actividad.</p>
+            </article>
+          </section>
+
+          <section id="usuarios" aria-labelledby="users-title" class="scroll-mt-24 space-y-5">
+            <div><p class="text-sm font-medium text-indigo-600 dark:text-indigo-400">Administración</p><h2 id="users-title" class="mt-1 text-2xl font-bold tracking-tight">Gestión de usuarios</h2><p class="mt-2 text-sm text-slate-500 dark:text-slate-400">Consulta los usuarios registrados, su plan y su estado.</p></div>
+            <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <div class="overflow-x-auto"><table class="w-full min-w-[680px] text-left text-sm">
+                <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500 dark:bg-slate-800/70 dark:text-slate-400"><tr><th scope="col" class="px-5 py-3">Usuario</th><th scope="col" class="px-5 py-3">Correo electrónico</th><th scope="col" class="px-5 py-3">Plan</th><th scope="col" class="px-5 py-3">Estado</th><th scope="col" class="px-5 py-3 text-right">Acciones</th></tr></thead>
+                <tbody id="users-table" class="divide-y divide-slate-100 dark:divide-slate-800"></tbody>
+              </table></div>
+            </div>
+          </section>
+
+          <section id="agentes" aria-labelledby="agents-title" class="scroll-mt-24 space-y-5">
+            <div><p class="text-sm font-medium text-indigo-600 dark:text-indigo-400">Automatización</p><h2 id="agents-title" class="mt-1 text-2xl font-bold tracking-tight">Gestión de agentes</h2><p class="mt-2 text-sm text-slate-500 dark:text-slate-400">Administra agentes, revisa sus skills y ajusta sus instrucciones.</p></div>
+            <div id="agents-list" class="grid gap-4 xl:grid-cols-2"></div>
+          </section>
+
+          <section id="skills" aria-labelledby="skills-title" class="scroll-mt-24 space-y-5">
+            <div><p class="text-sm font-medium text-indigo-600 dark:text-indigo-400">Capacidades</p><h2 id="skills-title" class="mt-1 text-2xl font-bold tracking-tight">Catálogo de skills</h2><p class="mt-2 max-w-3xl text-sm text-slate-500 dark:text-slate-400">Una skill es una capacidad especializada que extiende la funcionalidad de un agente y le permite realizar tareas concretas con instrucciones y herramientas enfocadas.</p></div>
+            <div id="skills-list" class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4"></div>
+          </section>
+
+          <section id="contrataciones" aria-labelledby="contracts-title" class="scroll-mt-24 space-y-5">
+            <div><p class="text-sm font-medium text-indigo-600 dark:text-indigo-400">Actividad comercial</p><h2 id="contracts-title" class="mt-1 text-2xl font-bold tracking-tight">Contrataciones de agentes</h2><p class="mt-2 text-sm text-slate-500 dark:text-slate-400">Contratos activos y recientes con su importe pagado.</p></div>
+            <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <div class="overflow-x-auto"><table class="w-full min-w-[850px] text-left text-sm">
+                <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500 dark:bg-slate-800/70 dark:text-slate-400"><tr><th scope="col" class="px-5 py-3">Cliente</th><th scope="col" class="px-5 py-3">Agente</th><th scope="col" class="px-5 py-3">Skills</th><th scope="col" class="px-5 py-3">Periodo</th><th scope="col" class="px-5 py-3">Pagado</th><th scope="col" class="px-5 py-3 text-right">Acciones</th></tr></thead>
+                <tbody id="contracts-table" class="divide-y divide-slate-100 dark:divide-slate-800"></tbody>
+              </table></div>
+            </div>
+          </section>
+
+          <section id="errores" aria-labelledby="errors-title" class="scroll-mt-24 space-y-5 pb-8">
+            <div><p class="text-sm font-medium text-indigo-600 dark:text-indigo-400">Observabilidad</p><h2 id="errors-title" class="mt-1 text-2xl font-bold tracking-tight">Log de errores</h2><p class="mt-2 text-sm text-slate-500 dark:text-slate-400">Incidencias recientes reportadas por los agentes.</p></div>
+            <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <div class="overflow-x-auto"><table class="w-full min-w-[760px] text-left text-sm">
+                <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500 dark:bg-slate-800/70 dark:text-slate-400"><tr><th scope="col" class="px-5 py-3">Timestamp</th><th scope="col" class="px-5 py-3">Agente</th><th scope="col" class="px-5 py-3">Tipo</th><th scope="col" class="px-5 py-3">Descripción</th><th scope="col" class="px-5 py-3">Estado</th><th scope="col" class="px-5 py-3 text-right">Acciones</th></tr></thead>
+                <tbody id="errors-table" class="divide-y divide-slate-100 dark:divide-slate-800"></tbody>
+              </table></div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div id="modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/60 p-4" role="presentation">
+      <section role="dialog" aria-modal="true" aria-labelledby="modal-title" class="max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl dark:bg-slate-900">
+        <div class="flex items-start justify-between gap-4">
+          <div><p class="text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AgentHub</p><h2 id="modal-title" class="mt-1 text-xl font-bold">Detalle</h2></div>
+          <button id="modal-close" type="button" aria-label="Cerrar" class="rounded-lg p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-white">✕</button>
+        </div>
+        <div id="modal-content" class="mt-6"></div>
+        <div id="modal-footer" class="mt-6 hidden justify-end gap-3">
+          <button id="modal-cancel" type="button" class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-800">Cancelar</button>
+          <button id="modal-save" type="button" class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">Guardar prompt</button>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const users = [
+        { id: "u1", name: "Lucía Fernández", email: "lucia@northstar.io", plan: "Enterprise", status: "Activo", company: "Northstar Labs", joined: "12 ene 2025", location: "Madrid, España" },
+        { id: "u2", name: "Mateo Ruiz", email: "mateo@brightpath.co", plan: "Pro", status: "Activo", company: "BrightPath", joined: "03 mar 2025", location: "Ciudad de México" },
+        { id: "u3", name: "Sofía Torres", email: "sofia@atelier.dev", plan: "Starter", status: "Pendiente", company: "Atelier Digital", joined: "18 abr 2025", location: "Buenos Aires, Argentina" },
+        { id: "u4", name: "Diego Morales", email: "diego@orbitcommerce.com", plan: "Pro", status: "Activo", company: "Orbit Commerce", joined: "27 may 2025", location: "Bogotá, Colombia" },
+        { id: "u5", name: "Valentina Cruz", email: "valentina@evergreen.ai", plan: "Enterprise", status: "Suspendido", company: "Evergreen AI", joined: "09 jun 2025", location: "Santiago, Chile" }
+      ];
+      const skills = [
+        { id: "s1", name: "Análisis de datos", description: "Interpreta conjuntos de datos, identifica tendencias y produce resúmenes accionables.", category: "Analítica", version: "2.4.0", enabledFor: ["a1", "a2", "a4"] },
+        { id: "s2", name: "Atención al cliente", description: "Resuelve consultas con respuestas útiles, empáticas y basadas en el contexto del cliente.", category: "Comunicación", version: "1.8.2", enabledFor: ["a1", "a3"] },
+        { id: "s3", name: "Generación de contenido", description: "Redacta y adapta contenido para distintos canales, públicos y tonos de marca.", category: "Creatividad", version: "3.1.0", enabledFor: ["a2", "a3", "a4"] },
+        { id: "s4", name: "Automatización CRM", description: "Organiza contactos, actualiza registros y prepara seguimientos dentro del flujo comercial.", category: "Operaciones", version: "1.2.1", enabledFor: ["a1", "a4"] }
+      ];
+      const agents = [
+        { id: "a1", name: "Atlas Support", owner: "Lucía Fernández", status: "Activo", skills: ["s1", "s2", "s4"], prompt: "Eres Atlas Support, un agente de atención al cliente. Responde con empatía, consulta el contexto disponible y ofrece pasos claros para resolver cada solicitud." },
+        { id: "a2", name: "Nova Analytics", owner: "Mateo Ruiz", status: "Activo", skills: ["s1", "s3"], prompt: "Eres Nova Analytics. Analiza los datos proporcionados, distingue hechos de supuestos y resume hallazgos con recomendaciones verificables." },
+        { id: "a3", name: "Echo Content", owner: "Sofía Torres", status: "Pausado", skills: ["s2", "s3"], prompt: "Eres Echo Content, especialista en contenido. Adapta el tono al público indicado y entrega textos concisos, originales y fáciles de revisar." },
+        { id: "a4", name: "Orion Sales", owner: "Diego Morales", status: "Activo", skills: ["s1", "s3", "s4"], prompt: "Eres Orion Sales. Ayuda al equipo comercial a priorizar oportunidades, mantener el CRM actualizado y preparar seguimientos relevantes." }
+      ];
+      const contracts = [
+        { id: "c1", client: "Northstar Labs", agent: "Atlas Support", agentId: "a1", skills: [{ id: "s2", price: 420 }, { id: "s4", price: 180 }], start: "01 sep 2025", end: "01 sep 2026", paid: 600, status: "Activo" },
+        { id: "c2", client: "BrightPath", agent: "Nova Analytics", agentId: "a2", skills: [{ id: "s1", price: 520 }, { id: "s3", price: 230 }], start: "15 ago 2025", end: "15 feb 2026", paid: 750, status: "Activo" },
+        { id: "c3", client: "Atelier Digital", agent: "Echo Content", agentId: "a3", skills: [{ id: "s3", price: 390 }, { id: "s2", price: 160 }], start: "10 jul 2025", end: "10 ene 2026", paid: 550, status: "Activo" },
+        { id: "c4", client: "Orbit Commerce", agent: "Orion Sales", agentId: "a4", skills: [{ id: "s4", price: 340 }, { id: "s1", price: 260 }], start: "01 jun 2025", end: "01 jun 2026", paid: 600, status: "Renovación próxima" }
+      ];
+      const errors = [
+        { id: "e1", timestamp: "30 sep 2025, 10:42", agent: "Atlas Support", type: "Timeout", severity: "Alto", description: "La respuesta del servicio de búsqueda superó el tiempo límite.", trace: "TimeoutError: search_context exceeded 10,000 ms\nat retrieveContext (agent/tools/search.js:84)\nat handleMessage (agent/runtime.js:132)" },
+        { id: "e2", timestamp: "30 sep 2025, 09:18", agent: "Nova Analytics", type: "API", severity: "Medio", description: "El proveedor de datos devolvió una respuesta temporalmente no disponible.", trace: "ProviderError: upstream returned HTTP 503\nat fetchDataset (integrations/data-provider.js:51)\nat runAnalysis (agents/nova.js:207)" },
+        { id: "e3", timestamp: "29 sep 2025, 17:06", agent: "Orion Sales", type: "Validación", severity: "Bajo", description: "No se pudo guardar un contacto por falta de correo electrónico.", trace: "ValidationError: contact.email is required\nat validateContact (integrations/crm/schema.js:33)\nat saveContact (integrations/crm/client.js:119)" },
+        { id: "e4", timestamp: "29 sep 2025, 14:33", agent: "Echo Content", type: "Límite", severity: "Medio", description: "La generación superó el límite de tokens configurado para la solicitud.", trace: "TokenLimitError: 8,412 tokens requested; limit is 8,000\nat generateContent (agent/runtime.js:291)\nat executeSkill (agent/skills.js:76)" },
+        { id: "e5", timestamp: "28 sep 2025, 11:51", agent: "Atlas Support", type: "Permisos", severity: "Alto", description: "El agente no tiene permiso para consultar el historial solicitado.", trace: "PermissionError: scope conversation.history is missing\nat authorizeTool (security/permissions.js:64)\nat callTool (agent/tools/index.js:45)" },
+        { id: "e6", timestamp: "27 sep 2025, 08:24", agent: "Nova Analytics", type: "API", severity: "Bajo", description: "La solicitud de métricas fue rechazada por un parámetro de fecha inválido.", trace: "BadRequestError: invalid date range\nat parseRange (integrations/metrics.js:27)\nat fetchMetrics (integrations/metrics.js:103)" }
+      ];
+
+      const modal = document.getElementById("modal");
+      const modalTitle = document.getElementById("modal-title");
+      const modalContent = document.getElementById("modal-content");
+      const modalFooter = document.getElementById("modal-footer");
+      let editingAgentId = null;
+
+      function element(tag, className, text) {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined) node.textContent = text;
+        return node;
+      }
+
+      function badge(text, tone) {
+        const tones = {
+          green: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300",
+          amber: "bg-amber-50 text-amber-700 dark:bg-amber-950 dark:text-amber-300",
+          red: "bg-rose-50 text-rose-700 dark:bg-rose-950 dark:text-rose-300",
+          blue: "bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300",
+          gray: "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300"
+        };
+        return element("span", `inline-flex rounded-full px-2.5 py-1 text-xs font-medium ${tones[tone] || tones.gray}`, text);
+      }
+
+      function actionsMenu(id, options) {
+        const wrapper = element("div", "relative inline-block text-left");
+        wrapper.dataset.dropdown = "";
+        const toggle = element("button", "rounded-lg p-2 text-lg leading-none text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800", "···");
+        toggle.type = "button";
+        toggle.setAttribute("aria-label", "Abrir acciones");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.dataset.menuToggle = "";
+        const menu = element("div", "absolute right-0 z-10 mt-1 hidden w-48 rounded-xl border border-slate-200 bg-white p-1 shadow-lg dark:border-slate-700 dark:bg-slate-800");
+        menu.dataset.menu = "";
+        options.forEach(([label, action, danger]) => {
+          const button = element("button", `block w-full rounded-lg px-3 py-2 text-left text-sm ${danger ? "text-rose-600 hover:bg-rose-50 dark:text-rose-400 dark:hover:bg-rose-950" : "text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-700"}`, label);
+          button.type = "button";
+          button.dataset.action = action;
+          button.dataset.id = id;
+          menu.append(button);
+        });
+        wrapper.append(toggle, menu);
+        return wrapper;
+      }
+
+      function tableCell(text, className = "px-5 py-4") {
+        return element("td", className, text);
+      }
+
+      function renderUsers() {
+        const tbody = document.getElementById("users-table");
+        tbody.replaceChildren();
+        users.forEach(user => {
+          const row = element("tr", "hover:bg-slate-50/70 dark:hover:bg-slate-800/40");
+          const nameCell = tableCell("");
+          const nameBlock = element("div", "font-medium text-slate-900 dark:text-white", user.name);
+          const company = element("div", "mt-0.5 text-xs text-slate-500 dark:text-slate-400", user.company);
+          nameCell.append(nameBlock, company);
+          row.append(nameCell, tableCell(user.email), tableCell(user.plan));
+          const statusCell = element("td", "px-5 py-4");
+          statusCell.append(badge(user.status, user.status === "Activo" ? "green" : user.status === "Pendiente" ? "amber" : "red"));
+          row.append(statusCell);
+          const actionCell = element("td", "px-5 py-3 text-right");
+          actionCell.append(actionsMenu(user.id, [["Ver detalle", "user-detail"], ["Eliminar", "user-delete", true]]));
+          row.append(actionCell);
+          tbody.append(row);
+        });
+      }
+
+      function renderAgents() {
+        const list = document.getElementById("agents-list");
+        list.replaceChildren();
+        agents.forEach(agent => {
+          const card = element("article", "rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900");
+          const top = element("div", "flex items-start justify-between gap-3");
+          const identity = element("div", "flex items-start gap-3");
+          const avatar = element("div", "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-indigo-50 font-semibold text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300", agent.name.slice(0, 1));
+          const details = element("div");
+          details.append(element("h3", "font-semibold", agent.name), element("p", "mt-1 text-sm text-slate-500 dark:text-slate-400", `Propietario: ${agent.owner}`));
+          identity.append(avatar, details);
+          const status = badge(agent.status, agent.status === "Activo" ? "green" : "gray");
+          const statusArea = element("div", "flex items-center gap-1");
+          statusArea.append(status, actionsMenu(agent.id, [["Configurar", "agent-configure"], ["Eliminar", "agent-delete", true]]));
+          top.append(identity, statusArea);
+
+          const skillsButton = element("button", "mt-5 flex w-full items-center justify-between rounded-lg border border-slate-200 px-3 py-2 text-left text-sm font-medium hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-800", "");
+          skillsButton.type = "button";
+          skillsButton.dataset.skillsToggle = "";
+          skillsButton.setAttribute("aria-expanded", "false");
+          skillsButton.append(element("span", "", `Skills habilitadas (${agent.skills.length})`), element("span", "transition-transform duration-300", "⌄"));
+          const outer = element("div", "grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out");
+          outer.dataset.skillsPanel = "";
+          const inner = element("div", "overflow-hidden");
+          const skillList = element("div", "flex flex-wrap gap-2 pt-3");
+          agent.skills.forEach(skillId => {
+            const skill = skills.find(item => item.id === skillId);
+            if (skill) skillList.append(badge(skill.name, "blue"));
+          });
+          if (!skillList.childElementCount) skillList.append(element("span", "text-sm text-slate-500", "Sin skills asignadas"));
+          inner.append(skillList);
+          outer.append(inner);
+          card.append(top, skillsButton, outer);
+          list.append(card);
+        });
+      }
+
+      function renderSkills() {
+        const list = document.getElementById("skills-list");
+        list.replaceChildren();
+        skills.forEach(skill => {
+          const card = element("article", "rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900");
+          const head = element("div", "flex items-start justify-between gap-2");
+          const icon = element("div", "flex h-10 w-10 items-center justify-center rounded-xl bg-violet-50 text-lg text-violet-700 dark:bg-violet-950 dark:text-violet-300", "◇");
+          head.append(icon, actionsMenu(skill.id, [["Ver detalle", "skill-detail"], ["Eliminar", "skill-delete", true]]));
+          const count = agents.filter(agent => agent.skills.includes(skill.id)).length;
+          card.append(head, element("h3", "mt-4 font-semibold", skill.name), element("p", "mt-2 min-h-16 text-sm leading-6 text-slate-500 dark:text-slate-400", skill.description));
+          const footer = element("div", "mt-4 flex items-center justify-between border-t border-slate-100 pt-3 dark:border-slate-800");
+          footer.append(badge(skill.category, "blue"), element("span", "text-xs text-slate-500 dark:text-slate-400", `${count} agentes`));
+          card.append(footer);
+          list.append(card);
+        });
+      }
+
+      function renderContracts() {
+        const tbody = document.getElementById("contracts-table");
+        tbody.replaceChildren();
+        contracts.forEach(contract => {
+          const row = element("tr", "hover:bg-slate-50/70 dark:hover:bg-slate-800/40");
+          row.append(tableCell(contract.client), tableCell(contract.agent), tableCell(contract.skills.map(item => skills.find(skill => skill.id === item.id)?.name || "Skill eliminada").join(", ")));
+          row.append(tableCell(`${contract.start} – ${contract.end}`), tableCell(`$${contract.paid.toLocaleString("en-US")}`));
+          const actionCell = element("td", "px-5 py-3 text-right");
+          actionCell.append(actionsMenu(contract.id, [["Ver detalle", "contract-detail"]]));
+          row.append(actionCell);
+          tbody.append(row);
+        });
+      }
+
+      function renderErrors() {
+        const tbody = document.getElementById("errors-table");
+        tbody.replaceChildren();
+        errors.forEach(error => {
+          const row = element("tr", `${error.resolved ? "bg-emerald-50/50 opacity-70 dark:bg-emerald-950/20" : "hover:bg-slate-50/70 dark:hover:bg-slate-800/40"}`);
+          row.append(tableCell(error.timestamp), tableCell(error.agent));
+          const typeCell = element("td", "px-5 py-4");
+          typeCell.append(badge(error.type, error.severity === "Alto" ? "red" : error.severity === "Medio" ? "amber" : "blue"));
+          row.append(typeCell, tableCell(error.description, "max-w-sm px-5 py-4 text-slate-600 dark:text-slate-300"));
+          const stateCell = element("td", "px-5 py-4");
+          stateCell.append(badge(error.resolved ? "Resuelto" : error.severity, error.resolved ? "green" : error.severity === "Alto" ? "red" : error.severity === "Medio" ? "amber" : "gray"));
+          row.append(stateCell);
+          const actionCell = element("td", "px-5 py-3 text-right");
+          const options = [["Ver detalle", "error-detail"]];
+          if (!error.resolved) options.push(["Marcar como resuelto", "error-resolve"]);
+          actionCell.append(actionsMenu(error.id, options));
+          row.append(actionCell);
+          tbody.append(row);
+        });
+      }
+
+      function showModal(title, entries, agentId = null) {
+        editingAgentId = agentId;
+        modalTitle.textContent = title;
+        modalContent.replaceChildren();
+        modalFooter.classList.toggle("hidden", !agentId);
+        modalFooter.classList.toggle("flex", Boolean(agentId));
+        if (agentId) {
+          const agent = agents.find(item => item.id === agentId);
+          const label = element("label", "block text-sm font-medium", "Prompt de sistema");
+          label.htmlFor = "agent-prompt";
+          const textarea = element("textarea", "mt-2 min-h-48 w-full rounded-xl border border-slate-300 bg-white p-3 text-sm leading-6 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 dark:border-slate-700 dark:bg-slate-950 dark:focus:ring-indigo-900");
+          textarea.id = "agent-prompt";
+          textarea.value = agent.prompt;
+          modalContent.append(element("p", "mb-4 text-sm text-slate-500 dark:text-slate-400", `Edita las instrucciones de ${agent.name}.`), label, textarea);
+        } else {
+          const definitionList = element("dl", "divide-y divide-slate-100 dark:divide-slate-800");
+          entries.forEach(([label, value]) => {
+            const item = element("div", "grid gap-1 py-3 sm:grid-cols-3 sm:gap-4");
+            item.append(element("dt", "text-sm font-medium text-slate-500 dark:text-slate-400", label), element("dd", "whitespace-pre-wrap break-words text-sm text-slate-900 sm:col-span-2 dark:text-slate-100", String(value)));
+            definitionList.append(item);
+          });
+          modalContent.append(definitionList);
+        }
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        document.getElementById(agentId ? "agent-prompt" : "modal-close").focus();
+      }
+
+      function closeModal() {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+        modalFooter.classList.add("hidden");
+        modalFooter.classList.remove("flex");
+        editingAgentId = null;
+      }
+
+      function showUser(user) {
+        showModal("Detalle del usuario", [["Nombre", user.name], ["Correo electrónico", user.email], ["Empresa", user.company], ["Plan", user.plan], ["Estado", user.status], ["Fecha de registro", user.joined], ["Ubicación", user.location]]);
+      }
+
+      function showSkill(skill) {
+        const enabled = agents.filter(agent => agent.skills.includes(skill.id)).map(agent => agent.name);
+        showModal("Detalle de la skill", [["Nombre", skill.name], ["Descripción", skill.description], ["Categoría", skill.category], ["Versión", skill.version], ["Agentes habilitados", enabled.join(", ") || "Ninguno"]]);
+      }
+
+      function showContract(contract) {
+        const breakdown = contract.skills.map(item => `${skills.find(skill => skill.id === item.id)?.name || "Skill eliminada"}: $${item.price}`).join("\n");
+        showModal("Detalle del contrato", [["Cliente", contract.client], ["Agente", contract.agent], ["Skills contratadas y precios", breakdown], ["Fecha de inicio", contract.start], ["Fecha de fin", contract.end], ["Importe pagado", `$${contract.paid.toLocaleString("en-US")}`], ["Estado", contract.status]]);
+      }
+
+      function handleAction(action, id) {
+        if (action === "user-detail") {
+          const user = users.find(item => item.id === id);
+          if (user) showUser(user);
+        } else if (action === "user-delete") {
+          const index = users.findIndex(item => item.id === id);
+          if (index !== -1) {
+            users.splice(index, 1);
+            renderUsers();
+          }
+        } else if (action === "agent-configure") {
+          const agent = agents.find(item => item.id === id);
+          if (agent) showModal(`Configurar ${agent.name}`, [], id);
+        } else if (action === "agent-delete") {
+          const index = agents.findIndex(item => item.id === id);
+          if (index !== -1) {
+            agents.splice(index, 1);
+            renderAgents();
+            renderSkills();
+          }
+        } else if (action === "skill-detail") {
+          const skill = skills.find(item => item.id === id);
+          if (skill) showSkill(skill);
+        } else if (action === "skill-delete") {
+          const index = skills.findIndex(item => item.id === id);
+          if (index !== -1) {
+            skills.splice(index, 1);
+            agents.forEach(agent => { agent.skills = agent.skills.filter(skillId => skillId !== id); });
+            contracts.forEach(contract => { contract.skills = contract.skills.filter(item => item.id !== id); });
+            renderSkills();
+            renderAgents();
+            renderContracts();
+          }
+        } else if (action === "contract-detail") {
+          const contract = contracts.find(item => item.id === id);
+          if (contract) showContract(contract);
+        } else if (action === "error-detail") {
+          const error = errors.find(item => item.id === id);
+          if (error) showModal("Detalle del error", [["Fecha y hora", error.timestamp], ["Agente", error.agent], ["Tipo", `${error.type} · ${error.severity}`], ["Descripción", error.description], ["Traza completa", error.trace], ["Estado", error.resolved ? "Resuelto" : "Pendiente"]]);
+        } else if (action === "error-resolve") {
+          const error = errors.find(item => item.id === id);
+          if (error) {
+            error.resolved = true;
+            renderErrors();
+          }
+        }
+      }
+
+      document.addEventListener("click", event => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const toggle = target.closest("[data-menu-toggle]");
+        if (toggle) {
+          const menu = toggle.parentElement.querySelector("[data-menu]");
+          const willOpen = menu.classList.contains("hidden");
+          document.querySelectorAll("[data-menu]").forEach(item => item.classList.add("hidden"));
+          document.querySelectorAll("[data-menu-toggle]").forEach(item => item.setAttribute("aria-expanded", "false"));
+          if (willOpen) {
+            menu.classList.remove("hidden");
+            toggle.setAttribute("aria-expanded", "true");
+          }
+          return;
+        }
+        const actionButton = target.closest("[data-action]");
+        if (actionButton) {
+          handleAction(actionButton.dataset.action, actionButton.dataset.id);
+        }
+        const skillsToggle = target.closest("[data-skills-toggle]");
+        if (skillsToggle) {
+          const panel = skillsToggle.nextElementSibling;
+          const expanded = skillsToggle.getAttribute("aria-expanded") === "true";
+          skillsToggle.setAttribute("aria-expanded", String(!expanded));
+          panel.classList.toggle("grid-rows-[0fr]", expanded);
+          panel.classList.toggle("grid-rows-[1fr]", !expanded);
+          skillsToggle.lastElementChild.classList.toggle("rotate-180", !expanded);
+        }
+        if (!target.closest("[data-dropdown]")) {
+          document.querySelectorAll("[data-menu]").forEach(item => item.classList.add("hidden"));
+          document.querySelectorAll("[data-menu-toggle]").forEach(item => item.setAttribute("aria-expanded", "false"));
+        }
+      });
+
+      document.getElementById("modal-close").addEventListener("click", closeModal);
+      document.getElementById("modal-cancel").addEventListener("click", closeModal);
+      modal.addEventListener("click", event => {
+        if (event.target === modal) closeModal();
+      });
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && !modal.classList.contains("hidden")) closeModal();
+      });
+      document.getElementById("modal-save").addEventListener("click", () => {
+        const agent = agents.find(item => item.id === editingAgentId);
+        const prompt = document.getElementById("agent-prompt");
+        if (agent && prompt instanceof HTMLTextAreaElement) {
+          agent.prompt = prompt.value;
+          closeModal();
+        }
+      });
+
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeLabel = document.getElementById("theme-label");
+      const themeIcon = document.getElementById("theme-icon");
+      function setTheme(dark) {
+        document.documentElement.classList.toggle("dark", dark);
+        themeToggle.setAttribute("aria-pressed", String(dark));
+        themeToggle.setAttribute("aria-label", dark ? "Activar modo claro" : "Activar modo oscuro");
+        themeLabel.textContent = dark ? "Modo claro" : "Modo oscuro";
+        themeIcon.textContent = dark ? "☀" : "☾";
+        localStorage.setItem("agenthub-theme", dark ? "dark" : "light");
+      }
+      setTheme(localStorage.getItem("agenthub-theme") === "dark");
+      themeToggle.addEventListener("click", () => setTheme(!document.documentElement.classList.contains("dark")));
+
+      const navLinks = Array.from(document.querySelectorAll("[data-nav-link]"));
+      navLinks.forEach(link => {
+        link.addEventListener("click", () => {
+          navLinks.forEach(item => {
+            item.classList.remove("bg-indigo-50", "text-indigo-700", "dark:bg-indigo-950", "dark:text-indigo-300");
+            item.classList.add("text-slate-600", "dark:text-slate-300");
+          });
+          link.classList.add("bg-indigo-50", "text-indigo-700", "dark:bg-indigo-950", "dark:text-indigo-300");
+          link.classList.remove("text-slate-600", "dark:text-slate-300");
+        });
+      });
+
+      renderUsers();
+      renderAgents();
+      renderSkills();
+      renderContracts();
+      renderErrors();
+    </script>
+  </body>
+</html>
